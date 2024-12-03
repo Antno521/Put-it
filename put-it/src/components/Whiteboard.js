@@ -7,6 +7,14 @@ export default function Whiteboard() {
 
   const handleWhiteboardClick = () => {
     console.log('rara')
+    if ("isActivated") {
+      
+    }
+  }
+
+  //Ska kallas på när isActivated är TRUE och när handleWhiteboardClick körs
+  function moveNote(){
+    
   }
   
   return (
