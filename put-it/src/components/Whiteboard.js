@@ -6,14 +6,20 @@ export default function Whiteboard() {
     {
       id: 1,
       message: "kom ihåg!",
+      activated: false,
+      xcoord: 40,
     },
     {
       id: 2,
       message: "Glöm ej",
+      activated: false,
+      xcoord: 0,
     },
     {
       id: 3,
       message: "tvätta",
+      activated: false,
+      xcoord: 300,
     },
   ]);
 
@@ -29,8 +35,19 @@ export default function Whiteboard() {
   }
 
   //Ska kallas på när isActivated är TRUE och när handleWhiteboardClick körs
-  function moveNote() {
+  function moveNote(id, newX) {
+    console.log("Flytta lapp i whiteboard")
+  }
 
+  function updateActivated(id){
+    const updatedNotes = notes.map((note) => {
+      if (id==note.id){
+        return {...note, activated: !note.activated};
+      }
+      
+      return note;
+    });
+    setNotes(updatedNotes);
   }
 
   return (
@@ -39,8 +56,12 @@ export default function Whiteboard() {
         console.log(note);
         return (
           <Note 
-            key={note.id} 
+            id={note.id} 
             message={note.message} 
+            activated={note.activated}
+            xcoord={note.xcoord}
+            moveNote={moveNote}
+            updateActivated={updateActivated}
           />
         );
       })}
