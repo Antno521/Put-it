@@ -1,28 +1,7 @@
 import { useState } from "react";
 import Note from "./Note"
 
-export default function Whiteboard() {
-  const [notes, setNotes] = useState([
-    {
-      id: 1,
-      message: "kom ihåg!",
-      activated: false,
-      xcoord: 40,
-    },
-    {
-      id: 2,
-      message: "Glöm ej",
-      activated: false,
-      xcoord: 0,
-    },
-    {
-      id: 3,
-      message: "tvätta",
-      activated: false,
-      xcoord: 300,
-    },
-  ]);
-
+export default function Whiteboard(props) {
   function handleMouseMove(event) {
     console.log('Mouse position: ', event.clientX, event.clientY);
   }
@@ -35,24 +14,28 @@ export default function Whiteboard() {
   }
 
   //Ska kallas på när isActivated är TRUE och när handleWhiteboardClick körs
-  function moveNote(id, newX) {
-    console.log("Flytta lapp i whiteboard")
+  function moveNote(id, activated, newX) {
+    if (activated){
+      updateCoords(id);
+    }
   }
 
-  function updateActivated(id){
-    const updatedNotes = notes.map((note) => {
+  
+
+  function updateCoords(id){
+    const updatedNotes = props.notes.map((note) => {
       if (id==note.id){
-        return {...note, activated: !note.activated};
+        return {...note, xcoord: note.xcoord+10};
       }
       
       return note;
     });
-    setNotes(updatedNotes);
+    props.setNotes(updatedNotes);
   }
 
   return (
     <div className="w-screen h-[calc(100vh-42px)] border-4 border-blue-500" onMouseMove={handleMouseMove} onClick={handleWhiteboardClick}>
-      {notes.map((note) => {
+      {props.notes.map((note) => {
         console.log(note);
         return (
           <Note 
@@ -61,7 +44,7 @@ export default function Whiteboard() {
             activated={note.activated}
             xcoord={note.xcoord}
             moveNote={moveNote}
-            updateActivated={updateActivated}
+            updateActivated={props.updateActivated}
           />
         );
       })}

@@ -13,9 +13,7 @@ export default function Note(props) {
   }
 
   function reposition() {
-    if (isActivated){
-      props.moveNote(props.id, xCoord)
-    }
+      props.moveNote(props.id, isActivated, xCoord)
   }
 
   useEffect(() => {
