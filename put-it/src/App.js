@@ -7,7 +7,7 @@ function App() {
     <div className="App">
       <Navbar />
       <Whiteboard />
-      Hello World!
+      
     </div>
   );
 }

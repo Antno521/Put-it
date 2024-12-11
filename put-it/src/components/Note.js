@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function Note() {
+export default function Note(props) {
   const [xCoord, setXCoord] = useState(40);
   const [yCoord, setYCoord] = useState(500);
   const [borderColor, setBorderColor] = useState('border-yellow-200')
@@ -24,7 +24,7 @@ export default function Note() {
 
   return (
     <div className={`size-40 bg-yellow-200 border-2 relative ${borderColor}`} style={{top: `${xCoord}px`, left: `${yCoord}px`}} onClick={handleNoteClick}>
-      hej
+      {props.message}
     </div>
   )
 }
