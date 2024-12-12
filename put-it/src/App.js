@@ -29,14 +29,17 @@ function App() {
   ]);
 
   function updateActivated(id){
+    console.log(`Updating activation for note ID: ${id}`);
     const updatedNotes = notes.map((note) => {
       if (id===note.id){
+        console.log(`Toggling activation for note: ${JSON.stringify(note)}`);
         return {...note, activated: !note.activated};
       }
       
       return note;
     });
     setNotes(updatedNotes);
+    console.log("Updated Notes: ", updatedNotes);
   }
 
   function updateCoords(id){
@@ -52,7 +55,7 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <Whiteboard notes={notes} setNotes={setNotes} updateActivated={updateActivated} updateCoords={updateCoords}/>
+      <Whiteboard notes={notes} updateActivated={updateActivated} updateCoords={updateCoords}/>
     </div>
   );
 }

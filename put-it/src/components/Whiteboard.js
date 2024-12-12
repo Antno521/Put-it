@@ -31,7 +31,6 @@ export default function Whiteboard(props) {
             xcoord={note.xcoord}
             ycoord={note.ycoord}
             updateActivated={props.updateActivated}
-            updateCoords={props.updateCoords}
           />
         );
       })}
