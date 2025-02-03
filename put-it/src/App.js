@@ -42,10 +42,10 @@ function App() {
     console.log("Updated Notes: ", updatedNotes);
   }
 
-  function updateCoords() {
+  function updateCoords(mouseX) {
     setNotes((prevNotes) => {
       const updatedNotes = prevNotes.map((note) =>
-        note.activated ? { ...note, xcoord: note.xcoord + 10 } : note
+        note.activated ? { ...note, xcoord: mouseX } : note
       );
       console.log("Updated Notes:", updatedNotes); // Debugging log
       return updatedNotes;
