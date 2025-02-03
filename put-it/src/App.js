@@ -42,14 +42,14 @@ function App() {
     console.log("Updated Notes: ", updatedNotes);
   }
 
-  function updateCoords(id){
-    const updatedNotes = notes.map((note) => {
-      if (id===note.id){
-        return {...note, xcoord: note.xcoord+10};
-      }
-      return note;
+  function updateCoords() {
+    setNotes((prevNotes) => {
+      const updatedNotes = prevNotes.map((note) =>
+        note.activated ? { ...note, xcoord: note.xcoord + 10 } : note
+      );
+      console.log("Updated Notes:", updatedNotes); // Debugging log
+      return updatedNotes;
     });
-    setNotes(updatedNotes);
   }
 
   return (

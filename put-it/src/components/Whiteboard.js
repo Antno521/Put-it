@@ -10,21 +10,15 @@ export default function Whiteboard(props) {
   // Get the mouse click
   const handleWhiteboardClick = () => {
     console.log('whiteboard click')
-    
-    // Move all activated Notes
-    props.notes.forEach((note) => {
-      if (note.activated){
-        props.updateCoords(note.id)
-      }
-    });
+    props.updateCoords()
   }
 
   return (
     <div className="w-screen h-[calc(100vh-42px)] border-4 border-blue-500" onMouseMove={handleMouseMove} onClick={handleWhiteboardClick}>
       {props.notes.map((note) => {
-        console.log(note);
         return (
-          <Note 
+          <Note
+            key={note.id} 
             id={note.id} 
             message={note.message} 
             activated={note.activated}
